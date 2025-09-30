@@ -1,0 +1,41 @@
+.DS_STORE
+Thumbs?db
+
+# IDE Config
+.idea/
+.vscode/
+.vsconfig
+*.suo
+*.user
+*.userprefs
+*.vcxproj*
+*.xcodeproj
+*.opensdf
+*.sdf
+*.db*.opendb
+
+# Binaries and builds
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+Build/
+*.VC.db
+
+# Unreal files
+*.generated.*
+*.log
+*.vs/
+
+# Compiled files
+*.dll
+*.pdb
+*.exe
+*.app
+*.dylib
+*.lib
+*.obj
+
+# Backup
+*.bak
+*.tmp
