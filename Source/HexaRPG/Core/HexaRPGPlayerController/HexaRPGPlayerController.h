@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
+#include "UI/PlayerHUD/PlayerHUD.h"
 #include "HexaRPGPlayerController.generated.h"
 
 class UInputMappingContext;
@@ -31,9 +32,16 @@ protected:
 	/** Mobile controls widget to spawn */
 	UPROPERTY(EditAnywhere, Category="Input|Touch Controls")
 	TSubclassOf<UUserWidget> MobileControlsWidgetClass;
+	
+	UPROPERTY(EditAnywhere, Category="Widget|HUD")
+	TSubclassOf<UPlayerHUD> HUDClass;
+
+	UPROPERTY()
+	UPlayerHUD* HUDRef;
 
 	/** Pointer to the mobile controls widget */
 	TObjectPtr<UUserWidget> MobileControlsWidget;
+	
 
 	/** Gameplay initialization */
 	virtual void BeginPlay() override;
@@ -41,4 +49,10 @@ protected:
 	/** Input mapping context setup */
 	virtual void SetupInputComponent() override;
 
+public:
+	UFUNCTION()
+	void HandleDeath();
+
+	UFUNCTION()
+	void HandleHealthChanged(float CurrentHealth, float MaxHealth);
 };
