@@ -9,6 +9,8 @@
 
 class UInputMappingContext;
 class UUserWidget;
+class UInputAction;
+struct FInputActionValue;
 
 /**
  *  Basic PlayerController class for a third person game
@@ -18,9 +20,8 @@ UCLASS(abstract)
 class AHexaRPGPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-	
-protected:
 
+protected:
 	/** Input Mapping Contexts */
 	UPROPERTY(EditAnywhere, Category ="Input|Input Mappings")
 	TArray<UInputMappingContext*> DefaultMappingContexts;
@@ -42,12 +43,13 @@ protected:
 	/** Pointer to the mobile controls widget */
 	TObjectPtr<UUserWidget> MobileControlsWidget;
 	
-
 	/** Gameplay initialization */
 	virtual void BeginPlay() override;
 
 	/** Input mapping context setup */
 	virtual void SetupInputComponent() override;
+
+	// virtual void OnPossess(APawn* InPawn) override;
 
 public:
 	UFUNCTION()
