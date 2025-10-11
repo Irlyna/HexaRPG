@@ -13,4 +13,14 @@ UCLASS()
 class HEXARPG_API APlayer_GM : public AGameModeBase
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Musics | GameOver")
+	USoundBase* GameOverSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Widgets")
+	TSubclassOf<UUserWidget> GameOverWidgetClass;
+	
+	UFUNCTION()
+	void GameOver();
 };

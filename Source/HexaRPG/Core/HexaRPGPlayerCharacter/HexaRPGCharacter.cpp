@@ -9,8 +9,10 @@
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "InputActionValue.h"
 #include "HexaRPG.h"
+#include "InputActionValue.h"
+#include "Core/HexaRPGPlayerState/HexaRPGPlayerState.h"
+#include "Kismet/GameplayStatics.h"
 
 AHexaRPGCharacter::AHexaRPGCharacter()
 {
@@ -130,4 +132,20 @@ void AHexaRPGCharacter::DoJumpEnd()
 {
 	// signal the character to stop jumping
 	StopJumping();
+}
+
+void AHexaRPGCharacter::ApplyDamage_Implementation(float const DamageAmount)
+{
+	if (HitDamageSound)
+	{
+		UGameplayStatics::SpawnSound2D(this, HitDamageSound);
+	}
+
+	if (APlayerState* APlayerState = GetPlayerState())
+	{
+		if (AHexaRPGPlayerState* const& HexaRPGPlayerState = Cast<AHexaRPGPlayerState>(APlayerState))
+		{
+			HexaRPGPlayerState->HealthComponent->TakeDamage(DamageAmount);
+		}
+	}
 }

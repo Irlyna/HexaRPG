@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "Interfaces/IDamageable.h"
 #include "Logging/LogMacros.h"
 #include "HexaRPGCharacter.generated.h"
 
@@ -19,7 +20,7 @@ DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
  *  Implements a controllable orbiting camera
  */
 UCLASS(abstract)
-class AHexaRPGCharacter : public ACharacter
+class AHexaRPGCharacter : public ACharacter, public IDamageableInterface
 {
 	GENERATED_BODY()
 
@@ -92,5 +93,12 @@ public:
 
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
+	USoundBase* HitDamageSound;
+
+	UFUNCTION(BlueprintNativeEvent, Category="Damage")
+    void ApplyDamage(float DamageAmount);
 };
 

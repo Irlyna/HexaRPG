@@ -18,15 +18,6 @@ public:
 	
 	/** Constructor */
 	AHexaRPGGameMode();
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Musics | GameOver")
-	USoundBase* GameOverSound;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Widgets")
-	TSubclassOf<UUserWidget> GameOverWidgetClass;
-	
-	UFUNCTION()
-	void GameOver();
 };
 
 

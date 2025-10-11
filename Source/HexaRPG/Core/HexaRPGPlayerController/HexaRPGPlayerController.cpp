@@ -9,6 +9,7 @@
 #include "HexaRPG.h"
 #include "HexaRPGGameMode.h"
 #include "Core/HexaRPGPlayerState/HexaRPGPlayerState.h"
+#include "Core/Player_GM/Player_GM.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/PlayerHUD/PlayerHUD.h"
 #include "Widgets/Input/SVirtualJoystick.h"
@@ -84,7 +85,7 @@ void AHexaRPGPlayerController::HandleDeath()
 {
 	if (GetWorld())
 	{
-		if (AHexaRPGGameMode* GameMode = Cast<AHexaRPGGameMode>(GetWorld()->GetAuthGameMode()))
+		if (APlayer_GM* GameMode = Cast<APlayer_GM>(GetWorld()->GetAuthGameMode()))
 		{
 			GameMode->GameOver();
 		}
